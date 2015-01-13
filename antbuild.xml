@@ -1,0 +1,23 @@
+<project name="projectname" default="buildtar" basedir=".">
+    <property name="build.dir" location="..\Build" />
+
+    <target name="clean" description="Clean build location">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="buildtar" description="Build project tar file">
+        <mkdir dir="${build.dir}" />
+
+        <tar destfile="${build.dir}/site-${CIBuildLabel}-${mode}.tar">
+            <fileset dir="${basedir}/">
+                <include name="*/**" />
+                <exclude name="antbuild.xml" />
+                <exclude name=".git/*" />
+                <exclude name=".git" />
+                <exclude name=".gitignore" />
+                <exclude name="README.md" />
+            </fileset>
+        </tar>
+    </target>
+
+</project>
